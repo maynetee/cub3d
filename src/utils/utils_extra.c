@@ -6,11 +6,11 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 23:21:04 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/19 23:21:05 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:12:49 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cube3d.h"
+#include "cube3d.h"
 
 char	*pad_line_with_spaces(char *line, int target_width)
 {

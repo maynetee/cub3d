@@ -6,11 +6,11 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 23:21:51 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/19 23:21:52 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:12:49 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cube3d.h"
+#include "cube3d.h"
 
 void	render_frame(t_game *game)
 {

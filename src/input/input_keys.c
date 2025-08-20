@@ -6,11 +6,11 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 23:22:24 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/19 23:22:28 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:11:55 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cube3d.h"
+#include "cube3d.h"
 
 int	handle_key_press(int keycode, t_game *game)
 {

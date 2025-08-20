@@ -6,11 +6,11 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 01:15:00 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/20 12:17:54 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:12:49 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cube3d.h"
+#include "cube3d.h"
 
 void	render_minimap(t_game *game)
 {

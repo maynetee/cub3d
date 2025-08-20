@@ -6,11 +6,11 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:25:00 by bergun            #+#    #+#             */
-/*   Updated: 2025/08/19 20:52:21 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:12:49 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cube3d.h"
+#include "cube3d.h"
 
 int	init_mlx_window(t_game *game)
 {
