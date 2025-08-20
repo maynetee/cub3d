@@ -1,12 +1,10 @@
-NO assets/textures/north_wall.xpm
 SO assets/textures/south_wall.xpm
 WE assets/textures/west_wall.xpm
 EA assets/textures/east_wall.xpm
 F 220,100,0
 C 225,30,0
 
-111111
-100001
-1010N1
-100001
-111111
+111111111
+100000001
+100N00001
+111111111
