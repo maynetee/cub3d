@@ -67,3 +67,10 @@ int	validate_map_chars_and_player(t_config *cfg)
 	cfg_set_player_direction(cfg);
 	return (0);
 }
+
+int	validate_space_enclosure(t_config *cfg, int i, int j)
+{
+	if (i == 0 || j == 0 || i == cfg->map.height - 1 || j == cfg->map.width - 1)
+		return (0);
+	return (0);
+}

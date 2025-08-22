@@ -6,7 +6,7 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 01:17:52 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/06 00:12:54 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/22 12:36:51 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,37 @@
 #include "parser.h"
 #include <stdlib.h>
 
-char	*alloc_padded_row(char *src, int width)
+static char	*filter_spaces(char *src)
 {
-	char	*dst;
+	char	*filtered;
 	int		i;
+	int		j;
 	int		len;
 
 	len = ft_strlen(src);
+	filtered = malloc(len + 1);
+	if (!filtered)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (i < len)
+	{
+		if (src[i] != ' ')
+		{
+			filtered[j] = src[i];
+			j++;
+		}
+		i++;
+	}
+	filtered[j] = '\0';
+	return (filtered);
+}
+
+static char	*pad_row(char *filtered, int width, int len)
+{
+	char	*dst;
+	int		i;
+
 	dst = malloc(width + 1);
 	if (!dst)
 		return (NULL);
@@ -28,7 +52,7 @@ char	*alloc_padded_row(char *src, int width)
 	while (i < width)
 	{
 		if (i < len)
-			dst[i] = src[i];
+			dst[i] = filtered[i];
 		else
 			dst[i] = ' ';
 		i++;
@@ -37,43 +61,42 @@ char	*alloc_padded_row(char *src, int width)
 	return (dst);
 }
 
+char	*alloc_padded_row(char *src, int width)
+{
+	char	*filtered;
+	char	*dst;
+	int		len;
+
+	filtered = filter_spaces(src);
+	if (!filtered)
+		return (NULL);
+	len = ft_strlen(filtered);
+	dst = pad_row(filtered, width, len);
+	free(filtered);
+	return (dst);
+}
+
 int	max_width(char **tmp, int h)
 {
-	int	i;
-	int	w;
-	int	len;
+	char	*filtered;
+	int		i;
+	int		w;
+	int		len;
 
 	w = 0;
 	i = 0;
 	while (i < h)
 	{
-		len = ft_strlen(tmp[i]);
+		filtered = filter_spaces(tmp[i]);
+		if (!filtered)
+			return (0);
+		len = ft_strlen(filtered);
 		if (len > w)
 			w = len;
+		free(filtered);
 		i++;
 	}
 	return (w);
-}
-
-void	cleanup_partial(t_map *m, char **tmp, int h, int i)
-{
-	int	j;
-
-	j = i + 1;
-	while (j < h)
-	{
-		free(tmp[j]);
-		j++;
-	}
-	m->height = i;
-	m->width = 0;
-}
-
-int	validate_space_enclosure(t_config *cfg, int i, int j)
-{
-	if (i == 0 || j == 0 || i == cfg->map.height - 1 || j == cfg->map.width - 1)
-		return (0);
-	return (0);
 }
 
 int	flood_fill_check(t_config *cfg)

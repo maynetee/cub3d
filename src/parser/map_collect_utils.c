@@ -67,3 +67,17 @@ int	create_padded_grid(t_map *m, char **tmp, int h, t_config *cfg)
 	m->height = h;
 	return (allocate_grid_rows(m, tmp, h, cfg));
 }
+
+void	cleanup_partial(t_map *m, char **tmp, int h, int i)
+{
+	int	j;
+
+	j = i + 1;
+	while (j < h)
+	{
+		free(tmp[j]);
+		j++;
+	}
+	m->height = i;
+	m->width = 0;
+}
