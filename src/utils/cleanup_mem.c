@@ -6,7 +6,7 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 20:52:56 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/20 22:12:49 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:37:08 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ void	cleanup_mlx_resources(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 		game->win = NULL;
 	}
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	game->mlx = NULL;
 }
 
 void	safe_exit(t_game *game, int exit_code)

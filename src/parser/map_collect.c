@@ -6,7 +6,7 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 01:17:47 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/06 00:12:45 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:36:38 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ static char	**init_tmp_array(char *first, t_config *cfg)
 		return (NULL);
 	}
 	dup = ft_strdup(first);
+	free(first);
 	if (!dup)
 	{
-		free(first);
 		free(tmp);
 		print_error_and_exit("Malloc failed", cfg);
 		return (NULL);

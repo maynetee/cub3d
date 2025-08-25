@@ -6,7 +6,7 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 20:51:54 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/20 22:12:49 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:36:28 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	load_texture_files(t_game *game)
 	while (i < 4)
 	{
 		if (!load_single_texture(game, i, game->scene.texture_paths[i]))
+		{
+			cleanup_texture_data(game);
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -34,13 +37,17 @@ int	load_single_texture(t_game *game, int index, char *path)
 	tex->img = mlx_xpm_file_to_image(game->mlx, path, &tex->width,
 			&tex->height);
 	if (!tex->img)
-		return (print_error("Error\nFailed to load texture"), 0);
+		return (free_texture_resources(game, tex),
+			print_error("Error\nFailed to load texture"), 0);
 	tex->data = mlx_get_data_addr(tex->img, &tex->bpp, &tex->size_line,
 			&tex->endian);
 	if (!tex->data)
+	{
+		free_texture_resources(game, tex);
 		return (print_error("Error\nFailed to get texture data"), 0);
+	}
 	if (!validate_texture_data(tex))
-		return (0);
+		return (free_texture_resources(game, tex), 0);
 	return (1);
 }
 
@@ -65,5 +72,8 @@ int	free_texture_resources(t_game *game, t_texture *texture)
 	texture->data = NULL;
 	texture->width = 0;
 	texture->height = 0;
+	texture->bpp = 0;
+	texture->size_line = 0;
+	texture->endian = 0;
 	return (1);
 }

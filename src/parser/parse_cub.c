@@ -6,7 +6,7 @@
 /*   By: mteichma <mteichma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 01:18:03 by mteichma          #+#    #+#             */
-/*   Updated: 2025/08/06 00:13:45 by mteichma         ###   ########.fr       */
+/*   Updated: 2025/08/25 14:40:05 by mteichma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,19 @@ static int	parse_file_content(int fd, t_config *cfg)
 		strip_newline(line);
 		result = process_line_and_check_map(line, cfg, fd);
 		if (result == 1)
-			return (1);
-		if (result == 2)
 		{
-			free(line);
-			line = NULL;
-			break ;
+			line = get_next_line(fd);
+			while (line)
+			{
+				free(line);
+				line = get_next_line(fd);
+			}
+			return (1);
 		}
-		free(line);
+		if (result == 2)
+			return (0);
 		line = get_next_line(fd);
 	}
-	free(line);
 	return (0);
 }
 
